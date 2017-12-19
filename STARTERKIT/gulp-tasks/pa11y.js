@@ -11,7 +11,7 @@ module.exports = function (gulp, plugins, options) {
   const gutil = plugins.gutil;
 
   gulp.task('test:pa11y', (cb) => {
-    
+
     // Initialising the initial values.
     let errors = 0, warnings = 0, passed = false;
 
@@ -29,17 +29,17 @@ module.exports = function (gulp, plugins, options) {
       results.map((result) => {
         // If results has issues.
         if (Object.keys(result.issues).length) {
-          // Iterating through issues 
+          // Iterating through issues
           result.issues.map((issue) => {
             // Defining the message template for issues
             const message = `\n================================================================================\n
-                ${result.pageUrl}\n
-                ${issue.type}\n
-                ${issue.code}\n
-                ${issue.context}\n
-                ${issue.message}\n
-                ${issue.selector}
-                \n================================================================================\n`;
+                      ${result.pageUrl}\n
+                      ${issue.type}\n
+                      ${issue.code}\n
+                      ${issue.context}\n
+                      ${issue.message}\n
+                      ${issue.selector}
+                      \n================================================================================\n`;
             // Logging errors in red
             if (issue.type === 'error') {
               errors += 1;
@@ -49,14 +49,14 @@ module.exports = function (gulp, plugins, options) {
             else if(issue.type === 'warning') {
               warnings += 1;
               gutil.log(gutil.colors.magenta(message));
-            }          
+            }
           });
         } else {
           // If the obj type has different data type.
           gutil.log(result);
         }
       });
-      // Logging of issues finishes 
+      // Logging of issues finishes
 
       // Updating the build response as per the promise response.
       // If error crosses threshold.
@@ -64,10 +64,10 @@ module.exports = function (gulp, plugins, options) {
         cb(new gutil.PluginError('pa11y',
           gutil.colors.red(
             `\n================================================================================\n
-              Build failed due to accessibility errors exceeding threshold ( ${errors} errors) with a threshold of ${options.pa11y.threshold.errors}
-              \n================================================================================\n
-              ${errors} errors\n
-              ${warnings} warnings\n`
+            Build failed due to accessibility errors exceeding threshold ( ${errors} errors) with a threshold of ${options.pa11y.threshold.errors}
+            \n================================================================================\n
+            ${errors} errors\n
+            ${warnings} warnings\n`
           )
         ));
       }
@@ -75,8 +75,8 @@ module.exports = function (gulp, plugins, options) {
       else if (options.pa11y.threshold.warnings > -1 && warnings > options.pa11y.threshold.warnings) {
         cb(new gutil.PluginError('pa11y',
           gutil.colors.magenta(
-          `\n================================================================================\n
-             Build failed due to accessibility warnings exceeding threshold (${warnings} warnings) with a threshold of ${options.pa11y.threshold.warnings}
+            `\n================================================================================\n
+            Build failed due to accessibility warnings exceeding threshold (${warnings} warnings) with a threshold of ${options.pa11y.threshold.warnings}
             \n================================================================================\n
             ${errors} errors\n
             ${warnings} warnings\n`
@@ -87,7 +87,7 @@ module.exports = function (gulp, plugins, options) {
       else {
         gutil.log('pa11y', gutil.colors.cyan(
           `\n================================================================================\n
-            Build succeeded.
+          Build succeeded.
           \n================================================================================\n
           ${errors} errors\n
           ${warnings} warnings\n`
@@ -100,12 +100,12 @@ module.exports = function (gulp, plugins, options) {
       // Breaking the gulp task if status is not true;
       if (!passed) {
         return 0;
-      }    
+      }
     })
     // Error handling code.
     .catch((error) => {
       gutil.log(error.message);
-      return 0;
+        return 0;
     });
   });
 }
