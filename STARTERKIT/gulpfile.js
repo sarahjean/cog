@@ -76,7 +76,7 @@ var plugins = require('gulp-load-plugins')({
     'gulp-sass-glob': 'sassGlob',
     'run-sequence': 'runSequence',
     'gulp-clean-css': 'cleanCSS',
-    'gulp-stylelint': 'stylelint',
+    'gulp-stylelint': 'gulpStylelint',
     'gulp-eslint': 'gulpEslint',
     'gulp-babel': 'babel',
     'gulp-util': 'gutil'
