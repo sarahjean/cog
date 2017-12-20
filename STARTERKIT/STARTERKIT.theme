@@ -57,6 +57,18 @@ function STARTERKIT_preprocess_page(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_region().
+ */
+function STARTERKIT_preprocess_region(&$variables) {
+  $region = $variables['region'];
+  $variables['attributes']['class'][] = 'region';
+  $variables['attributes']['class'][] = 'region--' . $region;
+  if (substr($region, 0, 7 ) === "sidebar") {
+    $variables['attributes']['class'][] = 'region--sidebar';
+  }
+}
+
+/**
  * Implements template_preprocess_block().
  */
 function STARTERKIT_preprocess_block(&$variables) {

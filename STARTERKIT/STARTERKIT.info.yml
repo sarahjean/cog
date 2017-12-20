@@ -5,15 +5,4 @@ core: 8.x
 hidden: true
 base theme: cog
 libraries:
-  - STARTERKIT/fonts
-  - STARTERKIT/fontawesome
   - STARTERKIT/global_styles
-regions:
-  branding: Branding
-  header: Header
-  pre_content: 'Pre content'
-  content: Content
-  sidebar_first: 'Sidebar first'
-  sidebar_second: 'Sidebar second'
-  post_content: 'Post content'
-  footer: Footer
