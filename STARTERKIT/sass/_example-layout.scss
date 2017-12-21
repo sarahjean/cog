@@ -1,8 +1,8 @@
-// Example Layout
+// Example CSS Grid Layout with Susy Fallback
 //
 // Example layout for Cog subthemes.
 //
-// Markup: example-layout.twig
+// Markup: example_layout.twig
 //
 // Style guide: Layout.example
 
@@ -15,17 +15,6 @@
 img {
   max-width: 100%;
   height: auto;
-}
-
-.visually-hidden {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
 }
 
 aside,
@@ -60,119 +49,118 @@ aside nav {
   margin-right: 1.5em;
 }
 
-// Breakpoints
-$breakpoint_lg: 960px;
-$breakpoint_md: 600px;
-
-/**
- * CSS GRID DEMO
- *
- * Comment out the CSS Grid Demo styles and uncomment the SUSY Demo
- * to use the Susy demo layout.
- */
-
 .layout-container {
   max-width: 1260px;
   margin: 0 auto;
 }
 
-main {
-  display: grid;
-  grid-template-columns: 1fr repeat(4, 1fr) 1fr;
-}
+// Breakpoints
+$breakpoint_lg: 960px;
+$breakpoint_md: 600px;
+
+/**
+ * SUSY GRID STYLES
+ */
+$susy: (
+  columns: 12,
+  gutters: 0,
+);
 
 .layout-content {
-  grid-column: 1/7;
+  @include span(12);
 
   @include breakpoint($breakpoint_lg) {
-    grid-column: 2/6;
-    order: 1;
+    @include span(8);
+    @include push(2);
   }
+}
+
+aside {
+  @include span(12);
 }
 
 aside.layout-sidebar-first {
-  grid-column: 1/7;
-
   @include breakpoint($breakpoint_md) {
-    grid-column: 1/4;
+    @include span(6 first);
   }
 
   @include breakpoint($breakpoint_lg) {
-    grid-column: 1/2;
-    order: 0;
+    @include span(2 first);
+    @include pull(10);
   }
 }
 
 aside.layout-sidebar-second {
-  grid-column: 1/7;
-
   @include breakpoint($breakpoint_md) {
-    grid-column: 4/7;
+    @include span(6 last); // Sets .layout-sidebar-first to span 6 columns.
   }
 
   @include breakpoint($breakpoint_lg) {
-    grid-column: 6/7;
-    order: 3;
+    @include span(2 last); // Sets .layout-sidebar-first to span 2 columns.
   }
 }
 
+.region--footer {
+  @include span(12);
+}
+
 /**
- * SUSY DEMO
+ * CSS GRID STYLES
  *
- * Comment out the CSS Grid Demo styles and uncomment this section
- * to use the Susy demo layout.
+ * Some versions of Edge and IE support an outdated verion of CSS Grid
+ * specification that does not include the grid-template property so we
+ * check against it to force them to fallback on Susy.
+ *
  */
+@supports (grid-template: none) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr repeat(4, 1fr) 1fr;
+  }
 
-// $susy: (
-//   container: 1280px,
-//   columns: 12,
-//   gutters: 0,
-// );
+  // Resets Susy styles
+  .layout-content,
+  aside.layout-sidebar-first,
+  aside.layout-sidebar-second,
+  .region--foooter {
+    width: auto;
+    float: none;
+    margin-right: 0;
+    margin-left: 0;
+  }
 
-// .layout-container {
-//   @include container;
-// }
+  .layout-content {
+    grid-column: 1/7;
 
-// .region--header,
-// .region--primary_menu,
-// .region--secondary_menu,
-// .region--breadcrumb,
-// .region--highlighted,
-// .region--help,
-// .region--footer {
-//   @include span(12);
-// }
+    @include breakpoint($breakpoint_lg) {
+      grid-column: 2/6;
+      order: 1;
+    }
+  }
 
-// .layout-content {
-//   @include span(12);
+  aside.layout-sidebar-first {
+    grid-column: 1/7;
 
-//   @include breakpoint($breakpoint_lg) {
-//     @include span(8);
-//     @include push(2);
-//   }
-// }
+    @include breakpoint($breakpoint_md) {
+      grid-column: 1/4;
+    }
 
-// aside {
-//   @include span(12);
-// }
+    @include breakpoint($breakpoint_lg) {
+      grid-column: 1/2;
+      order: 0;
+    }
+  }
 
-// aside.layout-sidebar-first {
-//   @include breakpoint($breakpoint_md) {
-//     @include span(6 first);
-//   }
+  aside.layout-sidebar-second {
+    grid-column: 1/7;
 
-//   @include breakpoint($breakpoint_lg) {
-//     @include span(2 first);
-//     @include pull(10);
-//   }
-// }
+    @include breakpoint($breakpoint_md) {
+      grid-column: 4/7;
+    }
 
-// aside.layout-sidebar-second {
-//   @include breakpoint($breakpoint_md) {
-//     @include span(6 last); // Sets .layout-sidebar-first to span 6 columns.
-//   }
-
-//   @include breakpoint($breakpoint_lg) {
-//     @include span(2 last); // Sets .layout-sidebar-first to span 2 columns.
-//   }
-// }
+    @include breakpoint($breakpoint_lg) {
+      grid-column: 6/7;
+      order: 3;
+    }
+  }
+}
