@@ -18,20 +18,25 @@ img {
 }
 
 aside,
-.region:not(.region--sidebar) {
+.region {
   padding: 10px;
   background-color: #eee;
   border: 1px solid #ddd;
 }
 
-.region--header {
+aside .region {
+  padding: 0;
+  border: none;
+}
+
+.region-header {
   font-size: 2em;
   font-weight: 700;
 }
 
-.region--primary_menu,
-.region--secondary_menu,
-.region--breadcrumb,
+.region-primary-menu,
+.region-secondary-menu,
+.region-breadcrumb,
 aside nav {
   ul,
   ol {
@@ -42,9 +47,9 @@ aside nav {
   }
 }
 
-.region--primary_menu li,
-.region--secondary_menu li,
-.region--breadcrumb li {
+.region-primary-menu li,
+.region-secondary-menu li,
+.region-breadcrumb li {
   display: inline-block;
   margin-right: 1.5em;
 }
@@ -60,6 +65,10 @@ $breakpoint_md: 600px;
 
 /**
  * SUSY GRID STYLES
+ *
+ * The susy grid styles are a fallback for older browsers that do not support
+ * CSS grids. The CSS grid styles are below.
+ *
  */
 $susy: (
   columns: 12,
@@ -100,7 +109,7 @@ aside.layout-sidebar-second {
   }
 }
 
-.region--footer {
+.region-footer {
   @include span(12);
 }
 
@@ -122,7 +131,7 @@ aside.layout-sidebar-second {
   .layout-content,
   aside.layout-sidebar-first,
   aside.layout-sidebar-second,
-  .region--foooter {
+  .region-foooter {
     width: auto;
     float: none;
     margin-right: 0;
