@@ -2,7 +2,7 @@
 //
 // Example layout for Cog subthemes.
 //
-// Markup: example_layout.twig
+// Markup: example-layout.twig
 //
 // Style guide: Layout.example
 
@@ -18,13 +18,15 @@ img {
 }
 
 aside,
+.layout-content,
 .region {
   padding: 10px;
   background-color: #eee;
   border: 1px solid #ddd;
 }
 
-aside .region {
+aside .region,
+.layout-content .region {
   padding: 0;
   border: none;
 }
