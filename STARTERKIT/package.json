@@ -49,7 +49,7 @@
     "stylelint-order": "^0.8.0",
     "stylelint-scss": "^2.2.0",
     "stylelint-selector-bem-pattern": "^2.0.0",
-    "susy": "3.0.1",
+    "susy": "^3.0.1",
     "typey": "^1.1.2"
   },
   "engines": {
