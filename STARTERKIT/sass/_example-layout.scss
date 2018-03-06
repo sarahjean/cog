@@ -1,0 +1,186 @@
+// Example CSS Grid Layout with Susy Fallback
+//
+// Example layout for Cog subthemes.
+//
+// Markup: example-layout.twig
+//
+// Style guide: Layout.example
+
+// Universally sets box-sizing for site.
+*,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+aside,
+.layout-content,
+.region {
+  padding: 10px;
+  background-color: #eee;
+  border: 1px solid #ddd;
+}
+
+aside .region,
+.layout-content .region {
+  padding: 0;
+  border: none;
+}
+
+.region-header {
+  font-size: 2em;
+  font-weight: 700;
+}
+
+.region-primary-menu,
+.region-secondary-menu,
+.region-breadcrumb,
+aside nav {
+  ul,
+  ol {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.region-primary-menu li,
+.region-secondary-menu li,
+.region-breadcrumb li {
+  display: inline-block;
+  margin-right: 1.5em;
+}
+
+.layout-container {
+  max-width: 1260px;
+  margin: 0 auto;
+}
+
+// Breakpoints
+$breakpoint_lg: 960px;
+$breakpoint_md: 600px;
+
+/**
+ * SUSY GRID STYLES
+ *
+ * The susy grid styles are a fallback for older browsers that do not support
+ * CSS grids. The CSS grid styles are below.
+ *
+ */
+$susy: (
+  'columns': susy-repeat(12),
+  'gutters': 0,
+);
+
+main {
+  @include breakpoint($breakpoint_lg) {
+    display: flex;
+  }
+}
+
+.layout-content {
+  flex: span(12);
+
+  @include breakpoint($breakpoint_lg) {
+    flex: span(8);
+    order: 1;
+  }
+}
+
+aside {
+  flex: span(12);
+}
+
+aside.layout-sidebar-first {
+  order: 0;
+
+  @include breakpoint($breakpoint_md) {
+    flex: span(6);
+  }
+
+  @include breakpoint($breakpoint_lg) {
+    flex: span(2);
+  }
+}
+
+aside.layout-sidebar-second {
+  order: 2;
+
+  @include breakpoint($breakpoint_md) {
+    flex: span(6);
+  }
+
+  @include breakpoint($breakpoint_lg) {
+    flex: span(2);
+  }
+}
+
+.region-footer {
+  width: span(12);
+}
+
+/**
+ * CSS GRID STYLES
+ *
+ * Some versions of Edge and IE support an outdated verion of CSS Grid
+ * specification that does not include the grid-template property so we
+ * check against it to force them to fallback on Susy.
+ *
+ */
+@supports (grid-template: none) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr repeat(4, 1fr) 1fr;
+  }
+
+  // Resets Susy styles
+  .layout-content,
+  aside.layout-sidebar-first,
+  aside.layout-sidebar-second,
+  .region-foooter {
+    width: auto;
+    float: none;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .layout-content {
+    grid-column: 1/7;
+
+    @include breakpoint($breakpoint_lg) {
+      grid-column: 2/6;
+      order: 1;
+    }
+  }
+
+  aside.layout-sidebar-first {
+    grid-column: 1/7;
+
+    @include breakpoint($breakpoint_md) {
+      grid-column: 1/4;
+    }
+
+    @include breakpoint($breakpoint_lg) {
+      grid-column: 1/2;
+      order: 0;
+    }
+  }
+
+  aside.layout-sidebar-second {
+    grid-column: 1/7;
+
+    @include breakpoint($breakpoint_md) {
+      grid-column: 4/7;
+    }
+
+    @include breakpoint($breakpoint_lg) {
+      grid-column: 6/7;
+      order: 3;
+    }
+  }
+}
