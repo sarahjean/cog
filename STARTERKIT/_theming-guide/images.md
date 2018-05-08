@@ -50,7 +50,7 @@ function EXAMPLE_preprocess_node(&$variables) {
 ### File contents
 
 ```twig
-<div> {{ original_image_render_array }} </div>
+<div>  </div>
 ```
 
 <a name="stylerenderarray"></a>
@@ -104,7 +104,7 @@ function EXAMPLE_preprocess_node(&$variables) {
 ### File contents
 
 ```twig
-<div> {{ image_styled_render_array }} </div>
+<div>  </div>
 ```
 
 <a name="imguri"></a>

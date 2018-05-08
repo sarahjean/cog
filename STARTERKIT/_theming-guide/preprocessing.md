@@ -28,7 +28,7 @@ function mytheme_preprocess_node(&$variables) {
 
 ```twig
 /* node.html.twig */
-{{ my_node_id }}
+
 ```
 
 <a name="userrole"></a>
@@ -183,22 +183,22 @@ Many used and unused variables exist out of the box for most of the core Twig fi
 ### File contents
 
 ```twig
-{{ attributes }}  Attributes rendered on body tag 
+{{ attributes }} Attributes rendered on body tag
 {{ logged_in }}  If user is logged in
 {{ is_admin }}  If user is admin
-{{ directory }}  Theme directory path  
+{{ directory }}  Theme directory path
 {{ root_path }}  The root path of the current page
 {{ node_type }}  The content type for the current node
 {{ css }}  A list of CSS files for the current page
 {{ head }}  Markup for the HEAD element
 {{ head_title }}  Page title for the TITLE tag
-{{ styles }}  Style tags HEAD section.
+{{ styles }}   Style tags HEAD section.
 {{ scripts }}  Script tags for javascript files in HEAD
-{{ scripts_bottom }}  Script tags for javascript files in BODY 
-{{ html_attributes }}  Attributes on the HTML tag 
+{{ scripts_bottom }}  Script tags for javascript files in BODY
+{{ html_attributes }}  Attributes on the HTML tag
 {{ db_offline }}  If the database is offline
 {{ db_is_active }}  DB is active
-{{ dump(user) }}  User object reference 
+{{ dump(user }}  User object reference
 ```
 
 ### Filename
@@ -208,22 +208,22 @@ Many used and unused variables exist out of the box for most of the core Twig fi
 ### File contents
 
 ```twig
-{{ base_path }}  The base path of site 
-{{ directory }}  Theme directory path 
+{{ base_path }}  The base path of site
+{{ directory }} Theme directory path
 {{ attributes }}  Attributes rendered on outside <div>
-{{ title }}  Node title if applicable 
-{{ front_page }}  Is front page 
-{{ language }}  Language variable 
-{{ logo }}  Theme logo 
+{{ title }}  Node title if applicable
+{{ front_page }}  Is front page
+{{ language }}  Language variable
+{{ logo }}  Theme logo
 {{ site_name }}  Site name
-{{ site_slogan }}  Site slogan 
+{{ site_slogan }}  Site slogan
 {{ logged_in }}  If user is logged in
-{{ is_admin }}  If user is admin
+{{ is_admin }}}  If user is admin
 {{ db_is_active }}  DB is active
 {{ dump(page) }}  Page object to be rendered in properties i.e. page.header
-{{ dump(user) }}  User object reference 
-{{ dump(tabs) }}  Tab object reference 
-{{ dump(node) }}  Node object reference 
+{{ dump(user) }}  User object reference
+{{ dump(tabs) }}  Tab object reference
+{{ dump(node) }}  Node object reference
 ```
 
 ### Filename
@@ -233,18 +233,18 @@ Many used and unused variables exist out of the box for most of the core Twig fi
 ### File contents
 
 ```twig
-{{ view_mode }}  View mode on nodes 
-{{ teaser }}  Teaser content 
-{{ node }}  Node object 
-{{ date }}  Date information 
-{{ author_name }}  Author name  
-{{ url }}  Rendered URL information 
-{{ content }}  Rendered content information 
-{{ attributes }}  Attributes rendered on article tag
-{{ directory }}  Theme directory path 
-{{ logged_in }}  If user is logged in
-{{ is_admin }}  If user is admin
-{{ db_is_active }}  DB is active
+  {{ view_mode }}  View mode on nodes
+  {{ teaser }}  Teaser content
+  {{ node }}  Node object
+  {{ date }}  Date information
+  {{ author_name }}  Author name
+  {{ url }}  Rendered URL information
+  {{ content }}  Rendered content information
+  {{ attributes }}  Attributes rendered on article tag
+  {{ directory }}  Theme directory path
+  {{ logged_in }}  If user is logged in
+  {{ is_admin }}  If user is admin
+  {{ db_is_active }}  DB is active
 ```
 
 ---

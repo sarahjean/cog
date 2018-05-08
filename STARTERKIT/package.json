@@ -1,7 +1,7 @@
 {
   "name": "STARTERKIT",
   "version": "0.1.0",
-  "description": "Front-end build tools for custom Drupal theme.",
+  "description": "Front-end build tools for STARTERKIT.",
   "repository": {
     "type": "git",
     "url": "https://github.com/acquia-pso/cog.git"

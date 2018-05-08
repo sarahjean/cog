@@ -50,7 +50,6 @@
 // browser-sync      : Device and browser testing tool
 // del               : delete
 // eslint            : JavaScript code quality tool
-// kss               : Living Style Guide Generator
 // run-sequence      : Run a series of dependent Gulp tasks in order
 // -------------------------------------
 
@@ -89,7 +88,7 @@ var path = require('path');
 // These are used in the options below.
 var paths = {
   styles: {
-    source: 'sass/',
+    source: 'patterns/',
     destination: 'css/'
   },
   scripts: {
@@ -158,7 +157,6 @@ var options = {
     }
 
   },
-
   // ----- KSS Node ----- //
   styleGuide: {
     source: [
@@ -180,7 +178,7 @@ var options = {
     urls: [ // An array of urls to test.
       // For testing in a travis environment:
       // 'http://127.0.0.1:8888',
-      // 'http://127.0.0.1:8888/themes/custom/yourtheme/styleguide'
+      // 'http://127.0.0.1:8888/themes/custom/STARTERKIT/styleguide'
     ],
     failOnError: true, // fail the build on error
     showFailedOnly: true, // show errors only and override reporter
@@ -215,9 +213,9 @@ require('./gulp-tasks/build')(gulp, plugins, options);
 require('./gulp-tasks/clean')(gulp, plugins, options);
 require('./gulp-tasks/clean-css')(gulp, plugins, options);
 require('./gulp-tasks/clean-styleguide')(gulp, plugins, options);
+require('./gulp-tasks/compile-styleguide')(gulp, plugins, options);
 require('./gulp-tasks/compile-sass')(gulp, plugins, options);
 require('./gulp-tasks/compile-js')(gulp, plugins, options);
-require('./gulp-tasks/compile-styleguide')(gulp, plugins, options);
 require('./gulp-tasks/default')(gulp, plugins, options);
 require('./gulp-tasks/lint-js')(gulp, plugins, options);
 require('./gulp-tasks/lint-css')(gulp, plugins, options);
