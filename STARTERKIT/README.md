@@ -105,7 +105,7 @@ sass/
 
 * **\_config.scss** this configuration is housing common mixins, variables, or similar, normally you would want to break these out in separate partials
 * **styles.scss**  the manifest file that imports all the partials or folders with globbing 
-* **base/** intended as the baseline pstyles that you extend upon and will include things like resets, global typography, or common form selectors.
+* **base/** intended as the baseline styles that you extend upon and will include things like resets, global typography, or common form selectors.
 * **layout/**  for structural layout that can apply to both the outer containers like the sidebars or headers, but also on inner structural pieces.
 * **components/** these module files are the reusable or component parts of our design.
 * **state/** modules will adjust when in a particular state, in regards to targeting how changes happen on contextual alterations for regions or similar  
