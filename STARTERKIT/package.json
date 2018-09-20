@@ -36,7 +36,7 @@
     "gulp-util": "^3.0.8",
     "gulp-watch": "^4.3.11",
     "kss": "^3.0.0-beta.18",
-    "node-sass": "sass/node-sass#a8005ad3e34b3310536888c299a186623a178f80",
+    "node-sass": "^4.9.3",
     "node-sass-import-once": "1.2.x",
     "pa11y": "beta",
     "run-sequence": "^2.2.0",
