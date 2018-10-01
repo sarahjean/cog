@@ -10,6 +10,8 @@
   Config file that contains centralized variables
 */
 @import "config";
+@import "utility/extends";
+@import "utility/mixins";
 
 // Base
 //
