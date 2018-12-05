@@ -2,9 +2,11 @@
   "name": "drupal/cog",
   "type": "drupal-theme",
   "description": "Acquia maintained starter theme.",
-  "keywords": ["Drupal"],
-  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "Drupal"
+  ],
   "homepage": "https://github.com/acquia-pso/cog",
+  "license": "GPL-2.0-or-later",
   "minimum-stability": "dev",
   "support": {
     "issues": "https://github.com/acquia-pso/cog/issues",
