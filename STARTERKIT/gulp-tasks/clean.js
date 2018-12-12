@@ -3,10 +3,15 @@
  * Task: Clean.
  */
 
- /* global module */
+/* global module */
 
 module.exports = function (gulp, plugins, options) {
   'use strict';
 
-  gulp.task('clean', ['clean:css', 'clean:styleguide']);
+  gulp.task(
+    'clean',
+    gulp.series(
+      'clean:css'
+    )
+  );
 };

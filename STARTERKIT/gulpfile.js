@@ -50,7 +50,6 @@
 // browser-sync      : Device and browser testing tool
 // del               : delete
 // eslint            : JavaScript code quality tool
-// kss               : Living Style Guide Generator
 // run-sequence      : Run a series of dependent Gulp tasks in order
 // -------------------------------------
 
@@ -108,11 +107,11 @@ var options = {
   browserSync: {
     // Put your local site URL here to prevent Browsersync
     // from prompting you to add additional scripts to your page.
-    // proxy: {
-    //   target: 'http://local.example.com'
-    // },
+    proxy: {
+      target: 'http://local.sitename.com'
+    },
     open: 'external',
-    xip: true,
+    xip: false,
     logConnections: true
   },
 
@@ -161,9 +160,7 @@ var options = {
 
   // ----- KSS Node ----- //
   styleGuide: {
-    source: [
-      paths.styles.source
-    ],
+    source: paths.styles.source,
     builder: 'builder/twig',
     destination: 'styleguide/',
     css: [
@@ -180,7 +177,7 @@ var options = {
     urls: [ // An array of urls to test.
       // For testing in a travis environment:
       // 'http://127.0.0.1:8888',
-      // 'http://127.0.0.1:8888/themes/custom/yourtheme/styleguide'
+      // 'http://127.0.0.1:8888/themes/custom/sitename/styleguide'
     ],
     failOnError: true, // fail the build on error
     showFailedOnly: true, // show errors only and override reporter
@@ -211,24 +208,24 @@ var options = {
 
 // Tasks
 require('./gulp-tasks/browser-sync')(gulp, plugins, options);
-require('./gulp-tasks/build')(gulp, plugins, options);
-require('./gulp-tasks/clean')(gulp, plugins, options);
 require('./gulp-tasks/clean-css')(gulp, plugins, options);
-require('./gulp-tasks/clean-styleguide')(gulp, plugins, options);
 require('./gulp-tasks/compile-sass')(gulp, plugins, options);
 require('./gulp-tasks/compile-js')(gulp, plugins, options);
-require('./gulp-tasks/compile-styleguide')(gulp, plugins, options);
-require('./gulp-tasks/default')(gulp, plugins, options);
 require('./gulp-tasks/lint-js')(gulp, plugins, options);
 require('./gulp-tasks/lint-css')(gulp, plugins, options);
 require('./gulp-tasks/minify-css')(gulp, plugins, options);
-require('./gulp-tasks/serve')(gulp, plugins, options);
 require('./gulp-tasks/test-css')(gulp, plugins, options);
-require('./gulp-tasks/watch')(gulp, plugins, options);
 require('./gulp-tasks/pa11y')(gulp, plugins, options);
+require('./gulp-tasks/compile-styleguide')(gulp, plugins, options);
+require('./gulp-tasks/build')(gulp, plugins, options);
+require('./gulp-tasks/watch')(gulp, plugins, options);
+require('./gulp-tasks/serve')(gulp, plugins, options);
+require('./gulp-tasks/default')(gulp, plugins, options);
+
 
 // Credits:
 //
+// - https://www.joezimjs.com/javascript/complete-guide-upgrading-gulp-4/
 // - http://drewbarontini.com/articles/building-a-better-gulpfile/
 // - https://teamgaslight.com/blog/small-sips-of-gulp-dot-js-4-steps-to-reduce-complexity
 // - http://cgit.drupalcode.org/zen/tree/STARTERKIT/gulpfile.js?h=7.x-6.x

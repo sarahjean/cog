@@ -3,7 +3,7 @@
  * Task: Minify:CSS.
  */
 
- /* global module */
+/* global module */
 
 module.exports = function (gulp, plugins, options) {
   'use strict';

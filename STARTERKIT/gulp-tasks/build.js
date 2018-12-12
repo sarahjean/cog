@@ -3,31 +3,30 @@
  * Task: Build.
  */
 
- /* global module */
+/* global module */
 
 module.exports = function (gulp, plugins, options) {
   'use strict';
-  plugins.runSequence.options.showErrorStackTrace = false;
 
-  gulp.task('build', function(cb) {
-    plugins.runSequence(
+  gulp.task(
+    'build',
+    gulp.series(
+      'clean:css',
       'compile:sass',
-      ['minify:css',
-        'compile:styleguide'],
-      ['lint:js-gulp',
-        'lint:js-with-fail',
-        'lint:css-with-fail'],
-      cb);
-  });
+      'minify:css',
+      gulp.parallel('lint:js-with-fail', 'lint:css-with-fail', 'compile:js'),
+      'compile:styleguide',
+    )
+  );
 
-  gulp.task('build:dev', function(cb) {
-    plugins.runSequence(
+  gulp.task(
+    'build:dev',
+    gulp.series(
+      'clean:css',
       'compile:sass',
-      ['minify:css',
-        'compile:styleguide'],
-      ['lint:js-gulp',
-        'lint:js',
-        'lint:css'],
-      cb);
-  });
+      'minify:css',
+      gulp.parallel('lint:js', 'lint:css', 'compile:js'),
+      'compile:styleguide'
+    )
+  );
 };

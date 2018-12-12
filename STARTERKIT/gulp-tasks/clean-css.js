@@ -3,15 +3,21 @@
  * Task: Clean:CSS.
  */
 
- /* global module */
+/* global module */
 
 module.exports = function (gulp, plugins, options) {
   'use strict';
 
   // Clean CSS files.
-  gulp.task('clean:css', function () {
-    plugins.del.sync([
-      options.css.files
-    ]);
-  });
+  function cleanCss(cb) {
+    plugins.del([options.css.files]);
+    cb();
+  }
+
+  gulp.task(
+    'clean:css',
+    gulp.series(
+      cleanCss
+    )
+  );
 };

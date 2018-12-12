@@ -8,13 +8,14 @@
 module.exports = function (gulp, plugins, options) {
   'use strict';
 
-  var browserSync = plugins.browserSync.create();
+  const browserSync = plugins.browserSync.create();
 
-  gulp.task('browser-sync', function () {
+  gulp.task('browsersync', function () {
     browserSync.init(options.browserSync);
   });
 
-  gulp.task('browser-sync:reload', function () {
+  gulp.task('browsersync:reload', function (done) {
     browserSync.reload();
+    done();
   });
 };
