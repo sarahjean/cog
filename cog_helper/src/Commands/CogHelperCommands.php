@@ -7,7 +7,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Webmozart\PathUtil\Path;
 
 /**
- * A Drush commandfile.
+ * A Drush command file.
  *
  * In addition to this file, you need a drush.services.yml
  * in root of your module, and a composer.json file that provides the name
@@ -22,7 +22,9 @@ class CogHelperCommands extends DrushCommands {
   /**
    * Create a theme using cog.
    *
-   * @param array $options An associative array of options whose values come from cli, aliases, config, etc.
+   * @param array $options
+   *   Options whose values come from cli, aliases, config, etc.
+   *
    * @option name
    *   A name for your theme.
    * @option machine-name
@@ -41,17 +43,20 @@ class CogHelperCommands extends DrushCommands {
    * @command cog-helper:create
    * @aliases cog-helper
    */
-  public function create(array $options = ['name' => null, 'machine-name' => null, 'path' => 'themes/custom', 'description' => null]) {
-    // See bottom of https://weitzman.github.io/blog/port-to-drush9 for details on what to change when porting a
-    // legacy command.
-
+  public function create(array $options = [
+    'name' => NULL,
+    'machine-name' => NULL,
+    'path' => 'themes/custom',
+    'description' => NULL,
+  ]) {
+    // See bottom of https://weitzman.github.io/blog/port-to-drush9 for details
+    // on what to change when porting a legacy command.
     // Set up variables.
     $fileSystem = new Filesystem();
     $name = $options['name'];
     $machine_name = $options['machine-name'];
 
     if (!$name && !$machine_name) {
-      //throw new \Exception()
       throw new \Exception(dt('The name of the theme was not specified.'));
     }
 
@@ -74,14 +79,13 @@ class CogHelperCommands extends DrushCommands {
       $path = Path::canonicalize($path);
     }
 
-    $sub_theme_path = Path::join(DRUPAL_ROOT,$path,$machine_name);
+    $sub_theme_path = Path::join(DRUPAL_ROOT, $path, $machine_name);
 
     // ***************************************************
     // Error check directories, then copy STARTERKIT.
     // ***************************************************.
     // Ensure the destination directory (not the sub-theme folder) exists.
     if (!is_dir(dirname($path))) {
-      // throw new \Exception()
       throw new \Exception(dt('The directory "!directory" was not found.', ['!directory' => dirname($path)]));
     }
 
@@ -89,7 +93,6 @@ class CogHelperCommands extends DrushCommands {
     $starterkit_path = Path::canonicalize(DRUPAL_ROOT . '/' . drupal_get_path('theme', 'cog') . '/STARTERKIT');
 
     if (!is_dir($starterkit_path)) {
-      // throw new \Exception()
       throw new \Exception(dt('The STARTERKIT directory was not found in "!directory"', ['!directory' => dirname($starterkit_path)]));
     }
 
@@ -122,7 +125,7 @@ class CogHelperCommands extends DrushCommands {
       ['pattern' => '/datestamp: \d+\n/', 'replacement' => ''],
     ];
 
-    $this->cog_helper_file_replace($sub_theme_path . '/STARTERKIT.info.yml', $info_strings, $info_regexs);
+    $this->cogHelperFileReplace($sub_theme_path . '/STARTERKIT.info.yml', $info_strings, $info_regexs);
 
     // ***************************************************
     // Replace STARTERKIT in file names and contents.
@@ -161,7 +164,7 @@ class CogHelperCommands extends DrushCommands {
 
     foreach ($sub_theme_files as $filename) {
       // Replace occurrences of 'STARTERKIT' with machine name of our sub theme.
-      $this->cog_helper_file_replace($filename, ['STARTERKIT' => $machine_name]);
+      $this->cogHelperFileReplace($filename, ['STARTERKIT' => $machine_name]);
 
       // Rename all files with STARTERKIT in their name.
       if (strpos($filename, 'STARTERKIT') !== FALSE) {
@@ -180,8 +183,15 @@ class CogHelperCommands extends DrushCommands {
 
   /**
    * Replace strings in a file.
+   *
+   * @param string $file_path
+   *   Path of the file.
+   * @param array $strings
+   *   Array of strings to be replaced.
+   * @param array $regexs
+   *   Regexs to apply to strings.
    */
-  protected function cog_helper_file_replace($file_path, $strings, $regexs = []) {
+  protected function cogHelperFileReplace($file_path, array $strings, array $regexs = []) {
     $file_path = Path::canonicalize($file_path);
     $file_contents = file_get_contents($file_path);
 
@@ -200,4 +210,5 @@ class CogHelperCommands extends DrushCommands {
       file_put_contents($file_path, $file_contents);
     }
   }
+
 }
