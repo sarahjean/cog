@@ -1,0 +1,5 @@
+name: Cog Helper
+type: module
+description: Helper module for Cog Theme
+package: Custom
+core: 8.x

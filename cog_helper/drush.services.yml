@@ -1,0 +1,5 @@
+services:
+  cog_helper.commands:
+    class: \Drupal\cog_helper\Commands\CogHelperCommands
+    tags:
+      - { name: drush.command }

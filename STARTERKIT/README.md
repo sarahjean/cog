@@ -22,6 +22,14 @@ The Cog theme is set up to utilize the `base => sub-theme` relationship. The ste
 
 ### Create Cog Sub-Theme
 
+For drush version 9+:
+* In your `themes/` directory create the `contrib/` and `custom/` directories
+* Download Cog into the `themes/contrib` folder and enable the cog_helper module using `drush pm:enable cog_helper`
+* Create the sub-theme with `drush cog --name "MyTheme"` (if you'd like to customize, first run `drush help cog` to see available options)
+* Enable your new `MyTheme` theme with `drush theme:enable mytheme` which is located in `themes/custom`
+* Set `MyTheme` as your default theme `drush config-set system.theme default mytheme`
+
+For drush versions prior to 9:
 * In your `themes/` directory create the `contrib/` and `custom/` directories
 * Download Cog into the `themes/contrib` folder and enable using `drush en cog`
 * Create the sub-theme with `drush cog "MyTheme"` (if you'd like to customize, first run `drush help cog` to see available options)
